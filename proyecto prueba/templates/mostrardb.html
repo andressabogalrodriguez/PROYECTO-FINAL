@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Geovisor panaderias norte de Bogotá </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4; /* Color de fondo */
+            font-family: Arial, sans-serif;
+        }
+
+        #map-container {
+            width: 100%;
+            height: 50vh;
+            position: relative; /* Añadido */
+        }
+        
+        #mapid {
+            width: 100%;
+            height: 100%;
+            z-index: 0; /* Añadido */
+
+        }
+
+        .container-table {
+            max-width: 800px;
+            margin: 50px auto 20px; /* Ajusté el margen superior a 50px */
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1;
+        
+    
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    
+    </style>
+</head>
+<body>
+    <h1>VISTA PANADERIAS LIJACA/TIBABITA</h1>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <!--Mapa-->
+    <div id="map-container">
+        <h1 style="text-align: center; padding: 20px; color: #333;">MapaGlobal</h1>
+        <div id="mapid"></div>
+        <div id="botones">
+            <div><button onclick="ocultarMarcadores()">Ocultar Marcadores</button></div>
+            <div><button onclick="mostrarMarcadores()">Mostrar Marcadores</button></div>
+        </div>
+    </div>
+    
+    <script>
+
+    var mymap = L.map('mapid').setView([4.7169694973141185, -74.101860320208], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    }).addTo(mymap);
+
+
+    </script>   
+
+    <!--marcadores--> 
+    <script>
+    var coordenada_1=L.marker([4.77086184029949, -74.0292083073403]).addTo(mymap);
+    coordenada_1.bindPopup('<b>Nombre:</b> ' + 'Sellale' + '<br><b>direccion:</b> ' + 'Ak. 9, Bogotá'+'<br><b>Descripción:</b> ' + 'RICOS DESAYUNOS, BUENOS PRECIOS, BUENA ANTENCION, RECOMENDADO EL PAN FRANCES DE MANTEQUILLA' + '<a href="{{ url_for('agregar') }}" class="btn btn-primary" style="margin-top: 10px; display: block; color: black;">Agregar Datos</a>')
+    var coordenada_2=L.marker([4.76573277351399, -74.0296992541618]).addTo(mymap);
+    coordenada_2.bindPopup('<b>Nombre:</b> ' + 'Pan-Express' + '<br><b>direccion:</b> ' + 'Cl. 189 #8-45, Usaquén, Bogotá, Cundinamarca'+ '<br><b>Descripción:</b> '+'RICOS DESAYUNOS, TIENDA DE VARIEDADES INCLUIDA, PASTELERIA RECOMENDADA, DOMINGOS DE TAMALES RECOMENDADOS' +'<a href="{{ url_for('agregar') }}" class="btn btn-primary" style="margin-top: 10px; display: block; color: black;">Agregar Datos</a>')
+    var coordenada_3=L.marker([4.76723689050943, -74.03205340575570]).addTo(mymap);
+    coordenada_3.bindPopup('<b>Nombre:</b> <br>' + 'Coffi-Pan' + '<br><b>direccion:</b> ' + 'Cra. 11a #190-46, Bogotá'+ '<b>Descripción:</b>  '+ 'ESCENCIAL PARA REMATAR DESPUES DE UN PLAN FAMILIAR O DE AMIGOS' +'<a href="{{ url_for('agregar') }}" class="btn btn-primary" style="margin-top: 10px; display: block; color: black;">Agregar Datos</a>');
+    var coordenada_4=L.marker([4.76614812049520, -74.03059692152350]).addTo(mymap);
+    coordenada_4.bindPopup('<b>Nombre:</b> ' + 'Pane-Gourmet' + '<br><b>direccion:</b> ' + '13, Cra. 8d #189 23, Bogotá'+ '<br><b>Descripción:</b> ' + 'PANADERIA DE BARRIO, RICAS GALLETAS Y PASABOCAS, TAMBIEN FUNCIONA COMO TIENDA DE BARRIO'+'<a href="{{ url_for('agregar') }}" class="btn btn-primary" style="margin-top: 10px; display: block; color: black;">Agregar Datos</a>')
+    var coordenada_5=L.marker([4.76627813818136, -74.029730348882]).addTo(mymap);
+    coordenada_5.bindPopup('<b>Nombre:</b> ' + 'Chispa Del Norte' + '<br><b>direccion:</b> ' + 'Cra. 8b #189-23, Usaquén, Bogotá'+ '<br><b>Descripción:</b> ' + 'PANADERIA RE-INAGURADA,RICOS POSTRES, SU PRINCIPAL FUERTE ES EL PAN ROLLO' + '<a href="{{ url_for('agregar') }}" class="btn btn-primary" style="margin-top: 10px; display: block; color: black;">Agregar Datos</a>')
+    {% for dato in datos %}
+    var coordenada = [{{ dato.lat }}, {{ dato.lng }}];
+    var marcador = L.marker(coordenada).addTo(mymap);
+    marcador.bindPopup('<b>Nombre:</b> ' + '{{ dato.nombre }}'+ '<br><b>direccion:</b> '+ '{{ dato.direccion }} '  + '<br><b>Descripción:</b> ' + '{{ dato.descripcion }}' + '<a href="{{ url_for('agregar') }}" class="btn btn-primary" style="margin-top: 10px; display: block; color: black;">Agregar Datos</a>')
+    {% endfor %}
+    function ocultarMarcadores() {
+        mymap.eachLayer(function(layer) {
+            if (layer instanceof L.Marker) {
+                mymap.removeLayer(layer);
+            }
+        });
+    }
+
+    function mostrarMarcadores() 
+    {
+        // Vuelve a agregar los marcadores existentes
+        coordenada_1.addTo(mymap);
+        coordenada_2.addTo(mymap);
+        coordenada_3.addTo(mymap);
+        coordenada_4.addTo(mymap);
+        coordenada_5.addTo(mymap);
+        
+        // Agrega los marcadores cargados desde la base de datos
+        {% for dato in datos %}
+            var coordenada = [{{ dato.lat }}, {{ dato.lng }}];
+            var marcador = L.marker(coordenada).addTo(mymap);
+            marcador.bindPopup('<b>Nombre:</b> ' + '{{ dato.nombre }}' + '<br><b>direccion:</b> ' + '{{ dato.direccion }} '  + '<br><b>Descripción:</b> ' + '{{ dato.descripcion }}' + '<a href="{{ url_for('agregar') }}" class="btn btn-primary" style="margin-top: 10px; display: block; color: black;">Agregar Datos</a>');
+        {% endfor %}
+    }
+    </script>
+    <div id="boton-container">
+        <button onclick="toggleTabla()">Mostrar/ocultar tabla</button>
+    </div>
+    
+    <!-- Contenedor de la tabla -->
+    <div class="container-table">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Latitud</th>
+                    <th>Longitud</th>
+                    <th>Direccion</th>
+                    <th>Descripción</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for dato in datos %}
+                <tr>
+                    <td>{{ dato.nombre }}</td>
+                    <td>{{ dato.lat }}</td>
+                    <td>{{ dato.lng }}</td>
+                    <td>{{ dato.direccion }}</td>
+                    <td>{{ dato.descripcion }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</body>

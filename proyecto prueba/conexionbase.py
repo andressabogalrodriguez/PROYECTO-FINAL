@@ -33,5 +33,5 @@ class Programa:
             db.session.commit()
     
             return redirect(url_for('buscarD'))
-        return render_template('index.html')
+        return render_template('panaderianueva.html')
 miPrograma=Programa()
